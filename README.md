@@ -37,11 +37,11 @@ the algorithm into steps (as I referenced the lefcture example with Mergesort)
 5. The final step is to sum the results together, which should be a constant number of recursions per layer of recursion.
 
 This leads to the time complexity of the algorithm looking like this:
-T(n)=3T(n/3)
-    =3(3T(n/3/3))
-    =9T(n/9)
-    =3^iT(n/(3^i))
+T(n)=3T(n/3)+3
+    =3(3T(n/3/3)+3)+3
+    =9T(n/9)+6
+    =3^iT(n/(3^i))+3i
 Where i = logbase3(n)
-    =nT(1)
-    =n(1)
-    =n which is an element of BigTheta(n)
+    =nT(1)+3logbase3(n)
+    =n(1)+3logbase3(n)
+    =n3logbase3(n) which is an element of $\Theta(n)$
