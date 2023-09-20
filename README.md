@@ -26,3 +26,22 @@ and solve it as we did in the lectures. Give the final $\Theta$ complexity.
 
 Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
+
+When analyzing the Divide and Conquer Sum algorithm, I started by breaking down 
+the algorithm into steps (as I referenced the lefcture example with Mergesort)
+
+1. If array has, 0, or 1 elements, we can process the array rather easily, returning either 0 or the first element, respectively. This is just one operation, the base case.
+2. If the array has 2 values, then we return their sum. This is also one operation.
+3. Split the array into 3 parts. This is a fixed number of operations, so it can also be discounted asymptotically.
+4. Sum each sub-array recursively. Here we finally get the first and only set of operations that scales with the size of input. Each sub-array will be (n/3) operations, as it contains a third of the input, which each need to be added together. Therefore, at this step, there are 3T(n/3) operations.
+5. The final step is to sum the results together, which should be a constant number of recursions per layer of recursion.
+
+This leads to the time complexity of the algorithm looking like this:
+T(n)=3T(n/3)
+    =3(3T(n/3/3))
+    =9T(n/9)
+    =3^iT(n/(3^i))
+Where i = logbase3(n)
+    =nT(1)
+    =n(1)
+    =n which is an element of BigTheta(n)
